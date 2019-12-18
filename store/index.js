@@ -3,15 +3,21 @@ import Vuex from 'vuex'
 import bmap from '../static/js/bmap-wx.min.js'
 Vue.use(Vuex)
 
+import {getInTheaters} from '../pages/apis/index.js'
+
 const store = new Vuex.Store({
 	state:{
-		city:''
+		city:'',
+		noPlayingList:[]
 	},
 	mutations:{
 		
 	},
 	actions:{
 		getCity(context){
+			uni.showLoading({
+			    title: '加载中'
+			})
 			// 检测用户是否授权
 			uni.authorize({
 				scope:'scope.userLocation',
@@ -31,6 +37,18 @@ const store = new Vuex.Store({
 								// location: res.latitude+','+res.longitude,
 								success(res){
 									context.state.city = res.originalData.result.addressComponent.city
+									
+									getInTheaters({
+										start:'0',
+										count:"8",
+										city: context.state.city
+									}).then(res =>{
+										let [err,data] = res
+										// console.log(data)
+										context.state.noPlayingList = data.data
+										uni.hideLoading();
+										console.log(context.state.noPlayingList)
+									})
 								}
 							});
 					    }

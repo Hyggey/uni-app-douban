@@ -1,0 +1,1 @@
+.focusContainer{height:100vh;position:relative}.focusContainer image{width:100%;height:100%}.focusContainer .start{position:absolute;bottom:45rpx;left:50%;margin-left:-92rpx;opacity:.7}

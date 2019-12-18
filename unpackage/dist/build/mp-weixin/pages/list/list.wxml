@@ -1,0 +1,1 @@
+<view class="listContainer"><swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{1000}}"><block wx:for="{{noPlayingList.subjects}}" wx:for-item="item" wx:for-index="index" wx:key="index"><swiper-item><view class="swiper-item"><image src="{{item.images.large}}" mode="widthFix"></image></view></swiper-item></block></swiper></view>
