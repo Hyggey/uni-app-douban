@@ -1,6 +1,6 @@
 <template>
 	<view class="focusContainer" v-if="noPlayingList.subjects">
-		<image :src="noPlayingList.subjects[1].images.small" mode=""></image>
+		<image :src="noPlayingList.subjects[4].images.small" mode=""></image>
 		<button class="start" @click="toList">立即体验</button>
 	</view>
 </template>

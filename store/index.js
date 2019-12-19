@@ -8,7 +8,7 @@ import {getInTheaters} from '../pages/apis/index.js'
 const store = new Vuex.Store({
 	state:{
 		city:'',
-		noPlayingList:[]
+		noPlayingList:{}
 	},
 	mutations:{
 		
@@ -36,8 +36,9 @@ const store = new Vuex.Store({
 							BMap.regeocoding({ 
 								// location: res.latitude+','+res.longitude,
 								success(res){
-									context.state.city = res.originalData.result.addressComponent.city
-									
+									// 截取合肥市中的合肥两字
+									context.state.city = res.originalData.result.addressComponent.city.substr(0,2)
+									// 调用请求接口函数
 									getInTheaters({
 										start:'0',
 										count:"8",

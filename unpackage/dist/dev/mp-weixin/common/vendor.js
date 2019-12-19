@@ -734,7 +734,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7009,7 +7009,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7030,14 +7030,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7113,7 +7113,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8434,7 +8434,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","_id"
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/focus/focus": { "usingComponents": {} }, "pages/index/index": { "navigationBarTitleText": "uni-app", "usingComponents": {} }, "pages/list/list": { "navigationBarTitleText": "电影-豆瓣", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/list/list": { "navigationBarTitleText": "电影-豆瓣", "usingComponents": {} }, "pages/focus/focus": { "navigationBarTitleText": "加拿大电鳗", "navigationBarBackgroundColor": "#E34B12", "usingComponents": {} }, "pages/index/index": { "navigationBarTitleText": "hello-app", "usingComponents": {} }, "pages/details/details": { "navigationBarTitleText": "电影-详情", "usingComponents": {} }, "pages/class/class": { "navigationBarTitleText": "列表-详情", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#053B6C", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -8577,7 +8577,7 @@ var _index = __webpack_require__(/*! ../pages/apis/index.js */ 18);function _int
 var store = new _vuex.default.Store({
   state: {
     city: '',
-    noPlayingList: [] },
+    noPlayingList: {} },
 
   mutations: {},
 
@@ -8605,8 +8605,9 @@ var store = new _vuex.default.Store({
               BMap.regeocoding({
                 // location: res.latitude+','+res.longitude,
                 success: function success(res) {
-                  context.state.city = res.originalData.result.addressComponent.city;
-
+                  // 截取合肥市中的合肥两字
+                  context.state.city = res.originalData.result.addressComponent.city.substr(0, 2);
+                  // 调用请求接口函数
                   (0, _index.getInTheaters)({
                     start: '0',
                     count: "8",
@@ -9607,7 +9608,8 @@ function _classCallCheck(t, a) {if (!(t instanceof a)) throw new TypeError("Cann
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getInTheaters = void 0; // https://douban-api.uieee.com/v2/movie/in_theaters
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.details = exports.top250 = exports.newMovies = exports.comingSoon = exports.getInTheaters = void 0; // https://douban-api.uieee.com/v2/movie/in_theaters
+var baseUrl = 'https://douban-api.uieee.com';
 var getInTheaters = function getInTheaters(params) {return (
     // 第一种写法,使用promise,简易写法
     // new Promise((resolve,reject) =>{
@@ -9630,11 +9632,58 @@ var getInTheaters = function getInTheaters(params) {return (
     // })
     // 第二种写法,直接使用uni得请求方式,不用写success,fail,自动返回一个promise
     uni.request({
-      url: 'https://douban-api.uieee.com/v2/movie/in_theaters',
+      url: "".concat(baseUrl, "/v2/movie/in_theaters"),
       method: 'GET',
       data: params,
       header: {
-        "content-type": 'JSON' } }));};exports.getInTheaters = getInTheaters;
+        "content-type": 'JSON' } }));};
+
+
+
+
+// 即将上映得电影
+exports.getInTheaters = getInTheaters;var comingSoon = function comingSoon(params) {return (
+    uni.request({
+      url: "".concat(baseUrl, "/v2/movie/coming_soon"),
+      method: 'GET',
+      data: params,
+      header: {
+        "content-type": 'JSON' } }));};
+
+
+
+
+// 豆瓣新片榜
+exports.comingSoon = comingSoon;var newMovies = function newMovies(params) {return (
+    uni.request({
+      url: "".concat(baseUrl, "/v2/movie/new_movies"),
+      method: 'GET',
+      data: params,
+      header: {
+        "content-type": 'JSON' } }));};
+
+
+
+
+// 豆瓣top250电影榜
+exports.newMovies = newMovies;var top250 = function top250(params) {return (
+    uni.request({
+      url: "".concat(baseUrl, "/v2/movie/top250"),
+      method: 'GET',
+      data: params,
+      header: {
+        "content-type": 'JSON' } }));};
+
+
+
+
+// 电影详情
+exports.top250 = top250;var details = function details(id) {return (
+    uni.request({
+      url: "".concat(baseUrl, "/v2/movie/subject/").concat(id),
+      method: 'GET',
+      header: {
+        "content-type": 'JSON' } }));};exports.details = details;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

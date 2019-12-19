@@ -1,1 +1,1 @@
-<block wx:if="{{noPlayingList.subjects}}"><view class="focusContainer"><image src="{{noPlayingList.subjects[1].images.small}}" mode></image><button data-event-opts="{{[['tap',[['toList',['$event']]]]]}}" class="start" bindtap="__e">立即体验</button></view></block>
+<block wx:if="{{noPlayingList.subjects}}"><view class="focusContainer"><image src="{{noPlayingList.subjects[4].images.small}}" mode></image><button data-event-opts="{{[['tap',[['toList',['$event']]]]]}}" class="start" bindtap="__e">立即体验</button></view></block>

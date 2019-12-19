@@ -1,14 +1,16 @@
 {
   "pages": [
-    "pages/list/list",
     "pages/focus/focus",
+    "pages/class/class",
+    "pages/details/details",
+    "pages/list/list",
     "pages/index/index"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#053B6C",
     "backgroundColor": "#F8F8F8"
   },
   "permission": {

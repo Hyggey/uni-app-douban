@@ -24,46 +24,46 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.listContainer {
-  background: #053B6C;
+.detailsBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
-.listContainer swiper {
-    height: 420rpx;
+.detailsBox .repeat_img {
+    width: 100%;
+    height: 100%;
 }
-.listContainer swiper image {
-      width: 100%;
+.detailsBox .shade {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    overflow-y: scroll;
 }
-.listContainer .wrap .title {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    padding: 0 20rpx;
-    color: #FFFFFF;
-    font-size: 36rpx;
-    margin: 15rpx 0;
+.detailsBox .shade image {
+      width: 640rpx;
+      height: 800rpx;
+      margin-top: 40rpx;
 }
-.listContainer .wrap .scroll-wrap {
-    white-space: nowrap;
-    height: 460rpx;
+.detailsBox .shade .nav {
+      padding: 0 60rpx;
 }
-.listContainer .wrap .scroll-wrap .slider {
-      width: 340rpx;
-      height: 460rpx;
-      display: inline-block;
-      padding-right: 15rpx;
+.detailsBox .shade .nav .rating {
+        text-align: left;
 }
-.listContainer .wrap .scroll-wrap .slider:last-child {
-        padding-right: 0;
+.detailsBox .shade .nav .content {
+        text-align: left;
 }
-.listContainer .wrap .scroll-wrap .slider image {
-        width: 100%;
-        height: 400rpx;
+.detailsBox .shade .nav .content view:first-child {
+          margin: 15rpx 0;
+          font-size: 40rpx;
+          font-weight: bold;
 }
-.listContainer .wrap .scroll-wrap .slider .title2 {
-        text-align: center;
-        color: #fff;
+.detailsBox .shade .nav .content view:last-child {
+          text-indent: 32rpx;
 }
 
