@@ -70,10 +70,12 @@
 				}).then(res =>{
 					let [err,data] = res;
 					let subjects = data.data.subjects
-					// 判断没有数据，停止请求接口
-					if(subjects.length == 0){
+					// 判断少于10条数据时，停止请求接口，因为我每次请求的是10条数据，最后一次少于10条，肯定就没有数据了。
+					if(subjects.length < 10){
 						console.log(111)
 						this.isshow = true
+						this.moveList = this.moveList.concat(subjects)
+						uni.hideLoading()
 					}
 					// 每次拼接10条数据
 					this.moveList = this.moveList.concat(subjects)

@@ -210,10 +210,12 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
       then(function (res) {var _res2 = _slicedToArray(
         res, 2),err = _res2[0],data = _res2[1];
         var subjects = data.data.subjects;
-        // 判断没有数据，停止请求接口
-        if (subjects.length == 0) {
+        // 判断少于10条数据时，停止请求接口，因为我每次请求的是10条数据，最后一次少于10条，肯定就没有数据了。
+        if (subjects.length < 10) {
           console.log(111);
           _this2.isshow = true;
+          _this2.moveList = _this2.moveList.concat(subjects);
+          uni.hideLoading();
         }
         // 每次拼接10条数据
         _this2.moveList = _this2.moveList.concat(subjects);
