@@ -1,6 +1,8 @@
 <template>
 	<view class="classBox">
-		<scroll-view class="scroll" scroll-y="true" @scrolltolower="scrolltolower">
+		<!-- 不用这个方法了，垃圾，他需要给定一个高度，由于各个手机屏幕高度不定，不好 -->
+		<!-- <scroll-view class="scroll" scroll-y="true" @scrolltolower="scrolltolower"> -->
+		<scroll-view class="scroll" scroll-y="true">
 			<view class="wrap" v-for="(item,index) in moveList" :key="index" @click="toDetails(item.id)">
 				<view class="left">
 					<image :src="item.images.small" alt="">
@@ -52,6 +54,35 @@
 				console.log(this.moveList)
 			})
 		},
+		// 上拉加载更多，需要在pages.json文件里配置   "onReachBottomDistance": 100
+		onReachBottom(){
+			if(!this.isshow){
+				this.start+=10;
+				uni.showLoading({
+					title: '加载中',
+					mask:true
+				})
+				console.log(this.start)
+				this.getClassData(this.typeNum)({
+					city: this.city,
+					start: this.start,
+					count:'10'
+				}).then(res =>{
+					let [err,data] = res;
+					let subjects = data.data.subjects
+					// 判断没有数据，停止请求接口
+					if(subjects.length == 0){
+						console.log(111)
+						this.isshow = true
+					}
+					// 每次拼接10条数据
+					this.moveList = this.moveList.concat(subjects)
+					uni.hideLoading()
+				})
+			}else{
+				uni.hideLoading()
+			}
+		},
 		computed:{
 			...mapState({
 				city: state => state.city
@@ -59,34 +90,34 @@
 		},
 		methods: {
 			// 滚动条滚动到底部事件，滑动加载
-			scrolltolower(){
-				if(!this.isshow){
-					this.start+=10;
-					uni.showLoading({
-					    title: '加载中',
-						mask:true
-					})
-					console.log(this.start)
-					this.getClassData(this.typeNum)({
-						city: this.city,
-						start: this.start,
-						count:'10'
-					}).then(res =>{
-						let [err,data] = res;
-						let subjects = data.data.subjects
-						// 判断没有数据，停止请求接口
-						if(subjects.length == 0){
-							console.log(111)
-							this.isshow = true
-						}
-						// 每次拼接10条数据
-						this.moveList = this.moveList.concat(subjects)
-						uni.hideLoading()
-					})
-				}else{
-					uni.hideLoading()
-				}
-			},
+			// scrolltolower(){
+			// 	if(!this.isshow){
+			// 		this.start+=10;
+			// 		uni.showLoading({
+			// 		    title: '加载中',
+			// 			mask:true
+			// 		})
+			// 		console.log(this.start)
+			// 		this.getClassData(this.typeNum)({
+			// 			city: this.city,
+			// 			start: this.start,
+			// 			count:'10'
+			// 		}).then(res =>{
+			// 			let [err,data] = res;
+			// 			let subjects = data.data.subjects
+			// 			// 判断没有数据，停止请求接口
+			// 			if(subjects.length == 0){
+			// 				console.log(111)
+			// 				this.isshow = true
+			// 			}
+			// 			// 每次拼接10条数据
+			// 			this.moveList = this.moveList.concat(subjects)
+			// 			uni.hideLoading()
+			// 		})
+			// 	}else{
+			// 		uni.hideLoading()
+			// 	}
+			// },
 			// 判断是即将上映的电影，还是top250...
 			getClassData(state){
 				if(state == 3){
@@ -109,7 +140,7 @@
 <style lang="scss">
 	.classBox{
 		.scroll{
-			height: 1700rpx;
+			// height: 1250rpx;
 			.wrap{
 				display: flex;
 				justify-content: space-between;

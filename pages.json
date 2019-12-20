@@ -10,7 +10,9 @@
 		{
 		    "path" : "pages/class/class",
 		    "style" : {
-				"navigationBarTitleText": "列表-详情"
+				"navigationBarTitleText": "列表-详情",
+				"enablePullDownRefresh": true,  //下拉加载
+				"onReachBottomDistance": 100    // 上拉刷新
 			}
 		},
 		{

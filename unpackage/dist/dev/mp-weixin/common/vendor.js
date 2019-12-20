@@ -8434,7 +8434,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","_id"
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/focus/focus": { "navigationBarTitleText": "加拿大电鳗", "navigationBarBackgroundColor": "#E34B12" }, "pages/class/class": { "navigationBarTitleText": "列表-详情" }, "pages/details/details": { "navigationBarTitleText": "电影-详情" }, "pages/list/list": { "navigationBarTitleText": "电影-豆瓣" }, "pages/index/index": { "navigationBarTitleText": "hello-app" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#053B6C", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/focus/focus": { "navigationBarTitleText": "加拿大电鳗", "navigationBarBackgroundColor": "#E34B12", "usingComponents": {} }, "pages/class/class": { "navigationBarTitleText": "列表-详情", "enablePullDownRefresh": true, "onReachBottomDistance": 100, "usingComponents": {} }, "pages/details/details": { "navigationBarTitleText": "电影-详情", "usingComponents": {} }, "pages/list/list": { "navigationBarTitleText": "电影-豆瓣", "usingComponents": {} }, "pages/index/index": { "navigationBarTitleText": "hello-app", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#053B6C", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */

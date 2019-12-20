@@ -24,70 +24,67 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.classBox .scroll {
-  height: 1700rpx;
-}
 .classBox .scroll .wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #ccc;
+}
+.classBox .scroll .wrap .left {
+    margin-right: 15rpx;
+}
+.classBox .scroll .wrap .left image {
+      width: 240rpx;
+      height: 300rpx;
+}
+.classBox .scroll .wrap .right {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-            justify-content: space-between;
-    padding: 20rpx 30rpx;
-    border-bottom: 1px solid #ccc;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
 }
-.classBox .scroll .wrap .left {
-      margin-right: 15rpx;
-}
-.classBox .scroll .wrap .left image {
-        width: 240rpx;
-        height: 300rpx;
-}
-.classBox .scroll .wrap .right {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-              flex: 1;
+.classBox .scroll .wrap .right .right_top {
       display: -webkit-box;
       display: -webkit-flex;
       display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-              flex-direction: column;
-      -webkit-justify-content: space-around;
-              justify-content: space-around;
-}
-.classBox .scroll .wrap .right .right_top {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-                justify-content: space-between;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
 }
 .classBox .scroll .wrap .right .right_top view:first-child {
-          font-size: 40rpx;
-          font-weight: 600;
+        font-size: 40rpx;
+        font-weight: 600;
 }
 .classBox .scroll .wrap .right .right_top view:last-child {
-          background: #e43a3d;
-          color: #FFFFFF;
-          border-radius: 15rpx;
-          padding: 4rpx 10rpx;
-          text-align: center;
-          font-size: 28rpx;
-          line-height: 52rpx;
+        background: #e43a3d;
+        color: #FFFFFF;
+        border-radius: 15rpx;
+        padding: 4rpx 10rpx;
+        text-align: center;
+        font-size: 28rpx;
+        line-height: 52rpx;
 }
 .classBox .scroll .wrap .right .txt {
-        color: #666;
+      color: #666;
 }
 .classBox .scroll .wrap .right .name {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
 }
 .classBox .scroll .wrap .right .name .name_item {
-          margin-right: 10rpx;
+        margin-right: 10rpx;
 }
 

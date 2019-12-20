@@ -1,6 +1,6 @@
 <template>
 	<view class="listContainer">
-		<swiper :indicator-dots="true" indicator-active-color="#e43a3d" :autoplay="false" :interval="3000" :duration="1000">
+		<swiper :indicator-dots="true" indicator-active-color="#e43a3d" :autoplay="true" :interval="3000" :duration="1000">
 			<swiper-item v-for="(item,index) in noPlayingList.subjects" :key="index">
 				<view class="swiper-item">
 					<image :src="item.images.large" mode="widthFix" @click="toDetails(item.id)"></image>

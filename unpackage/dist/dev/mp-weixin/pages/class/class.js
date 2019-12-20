@@ -164,6 +164,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _index = __webpack_require__(/*! ../../pages/apis/index.js */ 18);
 var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var _default =
 {
@@ -192,6 +194,35 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
       console.log(_this.moveList);
     });
   },
+  // 上拉加载更多，需要在pages.json文件里配置   "onReachBottomDistance": 100
+  onReachBottom: function onReachBottom() {var _this2 = this;
+    if (!this.isshow) {
+      this.start += 10;
+      uni.showLoading({
+        title: '加载中',
+        mask: true });
+
+      console.log(this.start);
+      this.getClassData(this.typeNum)({
+        city: this.city,
+        start: this.start,
+        count: '10' }).
+      then(function (res) {var _res2 = _slicedToArray(
+        res, 2),err = _res2[0],data = _res2[1];
+        var subjects = data.data.subjects;
+        // 判断没有数据，停止请求接口
+        if (subjects.length == 0) {
+          console.log(111);
+          _this2.isshow = true;
+        }
+        // 每次拼接10条数据
+        _this2.moveList = _this2.moveList.concat(subjects);
+        uni.hideLoading();
+      });
+    } else {
+      uni.hideLoading();
+    }
+  },
   computed: _objectSpread({},
   (0, _vuex.mapState)({
     city: function city(state) {return state.city;} })),
@@ -199,34 +230,34 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
 
   methods: {
     // 滚动条滚动到底部事件，滑动加载
-    scrolltolower: function scrolltolower() {var _this2 = this;
-      if (!this.isshow) {
-        this.start += 10;
-        uni.showLoading({
-          title: '加载中',
-          mask: true });
-
-        console.log(this.start);
-        this.getClassData(this.typeNum)({
-          city: this.city,
-          start: this.start,
-          count: '10' }).
-        then(function (res) {var _res2 = _slicedToArray(
-          res, 2),err = _res2[0],data = _res2[1];
-          var subjects = data.data.subjects;
-          // 判断没有数据，停止请求接口
-          if (subjects.length == 0) {
-            console.log(111);
-            _this2.isshow = true;
-          }
-          // 每次拼接10条数据
-          _this2.moveList = _this2.moveList.concat(subjects);
-          uni.hideLoading();
-        });
-      } else {
-        uni.hideLoading();
-      }
-    },
+    // scrolltolower(){
+    // 	if(!this.isshow){
+    // 		this.start+=10;
+    // 		uni.showLoading({
+    // 		    title: '加载中',
+    // 			mask:true
+    // 		})
+    // 		console.log(this.start)
+    // 		this.getClassData(this.typeNum)({
+    // 			city: this.city,
+    // 			start: this.start,
+    // 			count:'10'
+    // 		}).then(res =>{
+    // 			let [err,data] = res;
+    // 			let subjects = data.data.subjects
+    // 			// 判断没有数据，停止请求接口
+    // 			if(subjects.length == 0){
+    // 				console.log(111)
+    // 				this.isshow = true
+    // 			}
+    // 			// 每次拼接10条数据
+    // 			this.moveList = this.moveList.concat(subjects)
+    // 			uni.hideLoading()
+    // 		})
+    // 	}else{
+    // 		uni.hideLoading()
+    // 	}
+    // },
     // 判断是即将上映的电影，还是top250...
     getClassData: function getClassData(state) {
       if (state == 3) {
