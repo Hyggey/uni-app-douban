@@ -229,7 +229,7 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
 
 
   methods: {
-    // 滚动条滚动到底部事件，滑动加载
+    // 滚动条滚动到底部事件，滑动加载,废弃了，用上面的，这个有局限性，设置一个高度不好
     // scrolltolower(){
     // 	if(!this.isshow){
     // 		this.start+=10;
