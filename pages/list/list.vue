@@ -36,7 +36,7 @@
 	export default {
 		data() {
 			return {
-				moveList:[]
+				moveList:[]  // 电影数据列表
 			}
 		},
 		onReady() {
@@ -73,11 +73,13 @@
 					url: '../details/details?id='+ id,
 				});
 			},
+			// 页面跳转事件
 			toClass(index){
 				uni.navigateTo({
 					url: '../class/class?index='+ index,
 				});
 			},
+			// 调用接口
 			_comingSoon(){
 				// return 一个promise对象出来
 				return comingSoon({
@@ -86,6 +88,7 @@
 					city: this.city
 				})
 			},
+			// 调用接口
 			_newMovies(){
 				return newMovies({
 					start:'0',
@@ -93,6 +96,7 @@
 					city: this.city
 				})
 			},
+			// 调用接口
 			_top250(){
 				return top250({
 					start:'0',

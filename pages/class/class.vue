@@ -29,10 +29,10 @@
 	export default {
 		data() {
 			return {
-				start:0,
-				moveList:[],
-				isshow:false,
-				typeNum:-1
+				start:0,   // 请求数据，从多少开始请求
+				moveList:[],  // 请求到电影列表
+				isshow:false,  // 是否显示，"已经到底"
+				typeNum:-1   // top250，即将上映的电影...的来源标识符
 			}
 		},
 		onLoad(option) {
@@ -58,6 +58,7 @@
 			})
 		},
 		methods: {
+			// 滚动条滚动到底部事件，滑动加载
 			scrolltolower(){
 				if(!this.isshow){
 					this.start+=10;
@@ -73,6 +74,7 @@
 					}).then(res =>{
 						let [err,data] = res;
 						let subjects = data.data.subjects
+						// 判断没有数据，停止请求接口
 						if(subjects.length == 0){
 							console.log(111)
 							this.isshow = true
@@ -85,6 +87,7 @@
 					uni.hideLoading()
 				}
 			},
+			// 判断是即将上映的电影，还是top250...
 			getClassData(state){
 				if(state == 3){
 					return getInTheaters
@@ -93,6 +96,7 @@
 					return fnList[state]
 				}
 			},
+			// 跳转到页面详情事件
 			toDetails(id){
 				uni.navigateTo({
 					url: '../details/details?id='+ id,

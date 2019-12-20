@@ -26,7 +26,7 @@ const store = new Vuex.Store({
 					var BMap = new bmap.BMapWX({ 
 						ak: 'KuMdsfWrePh3cKASnxYhFOc33k819fzP' 
 					});
-					// 使用百度地图的话,这一步都不需要了
+					// 使用百度地图的话,这一步都不需要了,腾讯地图要,但腾讯地图下面的type需要换
 					uni.getLocation({
 					    type: 'wgs84',
 					    success: function (res) {
